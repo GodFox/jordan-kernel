@@ -50,6 +50,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "sgxscript.h"
 #include "sgxinfo.h"
 
+#include "sgxapi_km.h"
+
 #if defined (__cplusplus)
 extern "C" {
 #endif
