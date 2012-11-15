@@ -2468,11 +2468,14 @@ static struct platform_device mapphone_omaplfb_device = {
 	.id			= -1,
 };
 
-
 static void __init mapphone_sgx_init(void)
 {
+#ifdef CONFIG_SGX530
 	platform_device_register(&mapphone_sgx_device);
+#endif
+#ifdef CONFIG_OMAPLFB
 	platform_device_register(&mapphone_omaplfb_device);
+#endif
 }
 
 static void __init mapphone_bp_model_init(void)

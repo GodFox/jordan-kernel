@@ -142,7 +142,7 @@ sgx-y :=  \
 
 pvr530-$(CONFIG_ION_OMAP) += ion.o
 
-omaplfb-y := \
+omaplfb-$(CONFIG_OMAPLFB) := \
 	omaplfb/omaplfb_displayclass.o \
 	omaplfb/omaplfb_linux.o
 

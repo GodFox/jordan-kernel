@@ -7,8 +7,12 @@ config SGX540
 config SGX530
 	tristate "PowerVR SGX"
 	depends on ARCH_OMAP3
+	select OMAPLFB
 	---help---
 	  Support for the PowerVR SGX 3D core.
+
+config OMAPLFB
+	bool "OMAP LFB Platform Driver"
 
 config VIRTUAL_DISPLAY_SUPPORT
 	tristate "Virtual display support"
