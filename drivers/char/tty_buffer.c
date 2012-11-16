@@ -245,9 +245,9 @@ EXPORT_SYMBOL_GPL(tty_buffer_request_room);
 int tty_insert_flip_string(struct tty_struct *tty, const unsigned char *chars,
 				size_t size)
 {
-	int copied = 0;
+	size_t copied = 0;
 	do {
-		int goal = min(size - copied, TTY_BUFFER_PAGE);
+		size_t goal = min_t(size_t, size - copied, TTY_BUFFER_PAGE);
 		int space = tty_buffer_request_room(tty, goal);
 		struct tty_buffer *tb = tty->buf.tail;
 		/* If there is no space then tb may be NULL */
@@ -282,9 +282,9 @@ EXPORT_SYMBOL(tty_insert_flip_string);
 int tty_insert_flip_string_flags(struct tty_struct *tty,
 		const unsigned char *chars, const char *flags, size_t size)
 {
-	int copied = 0;
+	size_t copied = 0;
 	do {
-		int goal = min(size - copied, TTY_BUFFER_PAGE);
+		size_t goal = min_t(size_t, size - copied, TTY_BUFFER_PAGE);
 		int space = tty_buffer_request_room(tty, goal);
 		struct tty_buffer *tb = tty->buf.tail;
 		/* If there is no space then tb may be NULL */
