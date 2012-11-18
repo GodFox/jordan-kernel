@@ -690,7 +690,6 @@ static int bd7885_ioctl(struct inode *inode, struct file *file,
 
 static int cpcap_bd7885_probe(struct platform_device *pdev)
 {
-	int ret;
 	struct bd7885_cpcap_data *info;
 
 	pr_info("%s:CPCAP Probe enter\n", __func__);
@@ -708,7 +707,7 @@ static int cpcap_bd7885_probe(struct platform_device *pdev)
 
 	cpcap_info = info;
 	pr_info("%s:CPCAP probe exit\n", __func__);
-	return i2c_add_driver(&bd7885_driver);;
+	return (i2c_add_driver(&bd7885_driver));
 }
 
 static int cpcap_bd7885_remove(struct platform_device *pdev)

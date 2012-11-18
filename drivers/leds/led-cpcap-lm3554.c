@@ -302,7 +302,6 @@ static ssize_t lm3554_strobe_store(struct device *dev,
 {
 	int err;
 	unsigned long strobe_val = 0;
-	uint8_t err_flags;
 	uint8_t val;
 	uint8_t strobe_brightness;
 	struct i2c_client *client = container_of(dev->parent,

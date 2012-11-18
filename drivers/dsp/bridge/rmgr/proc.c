@@ -737,7 +737,7 @@ static DSP_STATUS proc_memory_sync(DSP_HPROCESSOR hProcessor, void *pMpuAddr,
 {
 	/* Keep STATUS here for future additions to this function */
 	DSP_STATUS status = DSP_SOK;
-	struct PROC_OBJECT *pProcObject = (struct PROC_OBJECT *)hProcessor;
+	// struct PROC_OBJECT *pProcObject = (struct PROC_OBJECT *)hProcessor;
 
 	DBC_Require(cRefs > 0);
 	GT_5trace(PROC_DebugMask, GT_ENTER,

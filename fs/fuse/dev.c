@@ -880,12 +880,13 @@ err:
 	return err;
 }
 
+static char buf_name[FUSE_NAME_MAX+1];
+
 static int fuse_notify_inval_entry(struct fuse_conn *fc, unsigned int size,
 				   struct fuse_copy_state *cs)
 {
 	struct fuse_notify_inval_entry_out outarg;
 	int err = -EINVAL;
-	char buf[FUSE_NAME_MAX+1];
 	struct qstr name;
 
 	if (size < sizeof(outarg))
@@ -903,13 +904,13 @@ static int fuse_notify_inval_entry(struct fuse_conn *fc, unsigned int size,
 	if (size != sizeof(outarg) + outarg.namelen + 1)
 		goto err;
 
-	name.name = buf;
+	name.name = buf_name;
 	name.len = outarg.namelen;
-	err = fuse_copy_one(cs, buf, outarg.namelen + 1);
+	err = fuse_copy_one(cs, buf_name, outarg.namelen + 1);
 	if (err)
 		goto err;
 	fuse_copy_finish(cs);
-	buf[outarg.namelen] = 0;
+	buf_name[outarg.namelen] = 0;
 	name.hash = full_name_hash(name.name, name.len);
 
 	down_read(&fc->killsb);
