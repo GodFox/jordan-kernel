@@ -880,6 +880,7 @@ err:
 	return err;
 }
 
+// stack size is too big for it in the next function
 static char buf_name[FUSE_NAME_MAX+1];
 
 static int fuse_notify_inval_entry(struct fuse_conn *fc, unsigned int size,

@@ -740,7 +740,7 @@ static int nand_wait(struct mtd_info *mtd, struct nand_chip *chip)
 			chip->cmdfunc(mtd, NAND_CMD_STATUS_MULTI, -1, -1);
 		else
 			chip->cmdfunc(mtd, NAND_CMD_STATUS, -1, -1);
-        }
+	}
 
 	while (time_before(jiffies, timeo)) {
 		if (chip->dev_ready) {
