@@ -1838,7 +1838,7 @@ static struct prm_setup_vc mapphone_prm_setup = {
 /* TODO : Implement CPCAP init */
 int __init omap_pmic_srinit(void)
 {
-	printk(KERN_INFO "\nMAPPHONE PMIC SR init...\n");
+	pr_notice("MAPPHONE PMIC SmartReflex init...\n");
 	return 0;
 }
 /**
@@ -2458,19 +2458,27 @@ static inline void mapphone_ramconsole_init(void) {}
 static inline void omap2_ramconsole_reserve_sdram(void) {}
 #endif
 
+#if defined(CONFIG_SGX530) || defined(CONFIG_SGX540)
+#define BUILD_WITH_SGX
+#endif
 
+#ifdef BUILD_WITH_SGX
 static struct platform_device mapphone_sgx_device = {
-       .name                   = "pvrsrvkm",
-       .id             = -1,
+	.name	= "pvrsrvkm",
+	.id	= -1,
 };
+#endif
+
+#ifdef CONFIG_OMAPLFB
 static struct platform_device mapphone_omaplfb_device = {
-	.name			= "omaplfb",
-	.id			= -1,
+	.name	= "omaplfb",
+	.id	= -1,
 };
+#endif
 
 static void __init mapphone_sgx_init(void)
 {
-#ifdef CONFIG_SGX530
+#ifdef BUILD_WITH_SGX
 	platform_device_register(&mapphone_sgx_device);
 #endif
 #ifdef CONFIG_OMAPLFB
@@ -2613,7 +2621,7 @@ static void __init mapphone_init(void)
 	mapphone_gadget_init();
 	mapphone_sim_init();
 #ifdef CONFIG_MEM_DUMP
-    reset_proc_init();
+	reset_proc_init();
 #endif
 }
 
