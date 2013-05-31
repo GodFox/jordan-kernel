@@ -865,6 +865,18 @@ int __get_user_pages_fast(unsigned long start, int nr_pages, int write,
 			  struct page **pages);
 
 /*
+* This struct is used to pass information from page reclaim to the shrinkers.
+* We consolidate the values for easier extention later.
+*/
+struct shrink_control {
+gfp_t gfp_mask;
+
+/* How many slab objects shrinker() should scan and try to reclaim */
+unsigned long nr_to_scan;
+};
+
+
+/*
  * A callback you can register to apply pressure to ageable caches.
  *
  * 'shrink' is passed a count 'nr_to_scan' and a 'gfpmask'.  It should
